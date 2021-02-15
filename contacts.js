@@ -9,13 +9,12 @@ async function listContacts() {
     try {
         const contacts = await fs.readFile(contactsPath, 'utf8');
         const parsedContacts = JSON.parse(contacts);
-        console.table('listContacts:', parsedContacts);
+        console.table(parsedContacts);
     } catch (error) {
         console.error(error.message);
         return;
     }
 }
-// listContacts();
 
 async function getContactById(contactId) {
     try {
@@ -23,13 +22,12 @@ async function getContactById(contactId) {
         const parsedContacts = JSON.parse(contacts);
 
         const searchContact = parsedContacts.find(({ id }) => id === contactId);
-        console.table('searchContact:', searchContact);
+        console.table(searchContact);
     } catch (error) {
         console.error(error.message);
         return;
     }
 }
-// getContactById(3);
 
 async function removeContact(contactId) {
     try {
@@ -51,7 +49,6 @@ async function removeContact(contactId) {
         return;
     }
 }
-// removeContact(3);
 
 async function addContact(name, email, phone) {
     try {
@@ -78,11 +75,11 @@ async function addContact(name, email, phone) {
         return;
     }
 }
-// addContact('David Alyaska', 'david.alyaska@mail.com', '(562) 569-8823');
 
-export default {
+const contacts = {
     listContacts,
     getContactById,
     removeContact,
     addContact,
 };
+export default contacts;
