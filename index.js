@@ -1,9 +1,6 @@
-// удобный парс аргументов командной строки
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import { argv } from './lib/yargs.js';
 import contacts from './contacts.js';
 
-const argv = yargs(hideBin(process.argv)).argv;
 const { listContacts, getContactById, removeContact, addContact } = contacts;
 
 function invokeAction({ action, id, name, email, phone }) {

@@ -1,6 +1,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import shortid from 'shortid';
+import { handleError } from './lib/handleError.js';
 
 const contactsPath = path.join('db', 'contacts.json');
 // console.log(contactsPath);
@@ -11,8 +12,10 @@ async function listContacts() {
         const parsedContacts = JSON.parse(contacts);
         console.table(parsedContacts);
     } catch (error) {
-        console.error(error.message);
-        return;
+        handleError(error);
+        // или так
+        // console.error(error.message);
+        // return;
     }
 }
 
@@ -24,8 +27,7 @@ async function getContactById(contactId) {
         const searchContact = parsedContacts.find(({ id }) => id === contactId);
         console.table(searchContact);
     } catch (error) {
-        console.error(error.message);
-        return;
+        handleError(error);
     }
 }
 
@@ -45,8 +47,7 @@ async function removeContact(contactId) {
         );
         console.log(`Contact with id "${contactId}" was successfully removed`);
     } catch (error) {
-        console.error(error.message);
-        return;
+        handleError(error);
     }
 }
 
@@ -71,8 +72,7 @@ async function addContact(name, email, phone) {
         );
         console.log(`Contact was successfully added`);
     } catch (error) {
-        console.error(error.message);
-        return;
+        handleError(error);
     }
 }
 
